@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil-Mon mini-site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+    <header>
+        <h1>Mon mini-site web</h1>
+    </header>
+   <nav>
+    <a href="index.html">Accueil</a>
+    <a href="presentation.html">presentation</a>
+    <a href="contact.html">contact</a>
+   </nav>
+   <div class="container">
+    <main>
+        <section class="carte">
+            <h2>laboratoire de manipulation du DOM</h2>
+            <p id="texteDynamique"> ce texte initial sera modifié avec javaScript.</p>
+            <button onclick="changerTexte()">Changer le texte</button>
+            <button onclick="changerCouleur()">Changer la couleur</button>
+            <button onclick="chanderStyle()">changer le style complet</button>
+            <button onclick="masquerTexte()">Masquer</button>
+            <button onclick="afficherTexte()">Afficher</button>
+            <button onclick="reinitialiserTexte()">Réinitialiser</button>
+        </section>
+        <section classe="carte">
+            <h2>Compteur iteratif</h2>
+            <p>Ce compteur montre comment javascript peut conserver et modifier une valeur.</p>
+            <p id="compteur">0</p>
+            <button onclick="incrementer()">Augmenter</button>
+            <button onclick="decrementer()">Diminuer</button>
+            <button onclick="remettreCompteurAZero()">Remettre a zero</button>
+        </section>
+        <section class="carte">
+            <h2>Message dynamique avec JavaScript</h2>
+            <p>cette zone permet d'afficher un message personnalisé à partir d'un nom saisi.</p>
+            <label for="nomUtilisateur">Entrez votre nom:</label>
+            <input type="text"id="nomUtilisateur"placeholder="Exemple: yannick">
+            <label for="domaineUtilisateur">Choisissezvotre domaine d'interet:</label>
+            <select id="domaineUtilisateur">
+                <option value="">--Choisir un domaine--</option>
+                <option value="réseaux informatiques">Réseaux informatiques</option>
+                <option value="cybersécurité">Cybersecurité</option>
+                <option value="developpement web">Developpement web</option>
+                <option value="administration système">Administration système</option>
+            </select>
+            <button onclick="afficherMessage()">Afficher le message</button>
+            <button onclick="effacerMessage()">Effacer</button>
+            <p id="messageResultat"></p>
+        </section>
+        <div class="carte">
+            <h2>Développement web</h2>
+            <p>le developpement web permet de créer les pages, les sites et les applications accessibles depuis un navigateur</p>
+            </div> 
+            <div class="carte">
+                <h2>responsive design</h2>
+                <p>le responsive design permet d'adapter automatiquement l'affichage d'un site aux differents ecrans </p>
+            </div>
+        <h2>Bienvenue</h2>
+        <p>ce site a été amelioré avec Flexbox pour une meilleure organisation.</p>
+    </main>
+    <aside>
+        <h2>Informations</h2>
+        <p>cette zone peut contenir des informations supplémentaires.</p>
+    </aside>
+   </div>
+   <footer>
+    <p>© 2026 - mon mini-site</p>
+   </footer>
+   </div>
+   <script>
+    function afficherMessage(){
+        let nom=document.getElementById("nomUtilisateur").value;
+        let domaine=document.getElementById("domaineUtilisateur").value;
+        let message="";
+        if(nom===""&& domaine===""){
+            message="veuillez saisir votre nom et choisir un domaine d'interet.";
+        }else if(nom===""){
+            message="veuillez saisir votre nom."
+        }else if(domaine===""){
+            message="veuillez choisir un domaine d'interet.";
+        }else{
+            message="Bienvenue"+ nom+ ".Votre domaine d'interet est:"+domaine+".";
+        }
+        document.getElementById("messageResultat").textContent=message;
+        function effacerMessage(){
+         document.getElementById("nomUtilisateur").value="";
+        document.getElementById("domaineUtilisateur").value="";
+        document.getElementById("messageResultat").textContact="";
+        }
+    }
+   </script>
+   <script>
+    function changerTexte(){
+        document.getElementById("texteDynamique").textContent="le texte a été modifié grace au DOM.";
+    }
+    function changerCouleur(){
+        document.getElementById("texteDynamique").style.color="red";
+    }
+    function chanderStyle(){
+        let element =document.getElementById("texteDynamique");
+        element.style.color="white";
+        element.style.backgroundColor="#0b3d91";
+        element.style.fontSize="20px";
+        element.style.fontWeight="bold";
+        element.style.padding="12px";
+        element.style.borderRadius="8px";
+        }
+        function masquerTexte(){
+            document.getElementById("texteDynamique").style.display="none";
+        }
+        function afficherTexte(){
+            document.getElementById("texteDynamique").style.display="block";
+        }
+        function reinitialiserTexte(){
+            let element=document.getElementById("texteDynamique");
+            element.textContent="ce texte initial sera modifié avec javascript.";
+            element.style.color="#222";
+            element.style.backgroundColor="transparent";
+            element.style.fontSize="16px";
+            element.style.fontWeight="normal";
+            element.style.padding="0";
+            element.style.borderRadius="0"
+            element.style.display="block";            
+        }
+        let valeurCompteur=0;
+        function incrementer(){
+            valeurCompteur=valeurCompteur+1;
+            document.getElementById("compteur").textContent=valeurCompteur;
+        }
+        function decrementer(){
+            valeurCompteur=valeurCompteur-1;
+            document.getElementById("compteur").textContent=valeurCompteur;
+        }
+        function remettreCompteurAZero(){
+            valeurCompteur=0;
+            document.getElementById("compteur").textContent= valeurCompteur;
+        }
+        function ajouterEquipement(){
+            let champ=document.getElementById("equipement");
+            let nomEquipement=champ.value;
+            let message=document.getElementById("messageListe");
+            if(nomEquipement===""){
+                message.textContent="veuillez saisir le nom de votre equipement.";
+                message.style.color="red";
+            }else{
+                let nouvelElement=document.createElement("li");
+                nouvelElement.textContent=nomEquipement;
+                document.getElementById("listeEquipements").appendChild(nouvelElement);
+                message.textContent="equipement ajouté avec succes.";
+                message.style.color="green";
+                champ.value="";
+            }
+        }
+        function viderliste(){
+            document.getElementById("listeEquipements").innerHTML="";
+            document.getElementById("messageListe").textContent="la liste a été vidée.";
+            document.getElementById("messageListe").style.color="#0b3d91";
+        }
+        function afficherImageProfil(){
+            let image=document.getElementById("imageDynamique");
+            image.src="images/profil.jpg";
+            image.alt="Image de profil";
+        }
+        function afficherImageReseau(){
+            let image=document.getElementById("imageDynamique");
+            image.src="images/reseau.jpg";
+            image.alt="Image representant un reseau informatique";
+        }
+          </script>
+          <section class="carte">
+            <h2>ajout dynamique dans une liste</h2>
+            <p>cette zone permet d'ajouter un equipement reseau dans une liste.</p>
+            <label for="equipement">Nom de l'equipement:</label>
+            <input type="text" id="equipement"placeholder="exemple:routeur R1">
+            <button onclick="ajouterEquipement()">ajouter</button>
+            <button onclick="viderliste()">vider la liste</button>
+            <ul id="listeEquipements"></ul>
+            <p id="messageListe"></p>
+          </section>
+          <section class="carte">
+            <h2>modification dynamique d'une image</h2>
+            <p>cette zone montre comment javascript peut modifier l'attribut src d'une image.</p>
+            <img id="imageDynamique" src="images/profil.jpg" alt="Image initial"width="250">
+            <button onclick="afficherImageProfil()">afficher image profil</button>
+            <button onclick="afficherImageReseau()">afficher image reseau</button>
+                  </section>
+</body>
+</html>
